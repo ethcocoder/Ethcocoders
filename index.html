@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ethco Coders - A collective of four visionary Ethiopian software engineers creating ethical, scalable solutions for local and global challenges. Est. 2025.">
+    <meta name="keywords" content="Ethiopian software engineers, web development, mobile apps, AI, Ethiopia tech, software development">
+    <meta name="author" content="Ethco Coders">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ethco Coders | Ethiopian Young Software Engineers">
+    <meta property="og:description" content="Building Ethiopia's Digital Future - A collective of visionary Ethiopian software engineers.">
+    
+    <title>Ethco Coders | Ethiopian Young Software Engineers</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js for 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+          :root {
+            --ethiopian-green: #078930;
+            --ethiopian-yellow: #fcdd09;
+            --ethiopian-red: #da121a;
+            --dark-blue: #0a192f;
+            --light-blue: #64ffda;
+            --off-white: #ccd6f6;
+            --dark-gray: #112240;
+            --card-bg: rgba(10, 25, 47, 0.7);
+            --gradient-primary: linear-gradient(135deg, var(--ethiopian-green), var(--ethiopian-yellow), var(--ethiopian-red));
+            --gradient-secondary: linear-gradient(90deg, var(--ethiopian-green), var(--ethiopian-yellow));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--dark-blue);
+            color: var(--off-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(7, 137, 48, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .container {
+            max-width: 1200px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(10, 25, 47, 0.95) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.15);
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-brand {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            color: var(--off-white) !important;
+            margin: 0 0.8rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--light-blue) !important;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--light-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 10rem 0 6rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 4.2rem;
+            line-height: 1.1;
+            margin-bottom: 1.8rem;
+            background: linear-gradient(to right, var(--off-white), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            color: rgba(204, 214, 246, 0.9);
+        }
+        
+        .ethiopian-flag {
+            display: flex;
+            height: 50px;
+            width: 150px;
+            margin: 2rem auto;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .flag-green { background-color: var(--ethiopian-green); height: 33.33%; }
+        .flag-yellow { background-color: var(--ethiopian-yellow); height: 33.33%; }
+        .flag-red { background-color: var(--ethiopian-red); height: 33.33%; }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white !important;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.4);
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(100, 255, 218, 0.6);
+            background: linear-gradient(135deg, var(--ethiopian-red), var(--ethiopian-yellow), var(--ethiopian-green));
+        }
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.15) 0%, transparent 70%);
+            z-index: 0;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            display: inline-block;
+            background: linear-gradient(to right, var(--off-white), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
+            z-index: 1;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        /* About Section */
+        .about-content {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(17, 34, 64, 0.6);
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            background: rgba(17, 34, 64, 0.8);
+            border-color: var(--light-blue);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Team Section */
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            height: 100%;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--light-blue);
+        }
+        
+        .member-img {
+            height: 280px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(10, 25, 47, 0.7), rgba(10, 25, 47, 0.9));
+        }
+        
+        .member-info {
+            padding: 2rem;
+        }
+        
+        .member-name {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(to right, var(--off-white), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .member-role {
+            color: var(--ethiopian-yellow);
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: block;
+            font-size: 1.1rem;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background: rgba(100, 255, 218, 0.15);
+            color: var(--light-blue);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+        
+        .skill-tag:hover {
+            background: rgba(100, 255, 218, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* Projects Section */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            height: 100%;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--light-blue);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .project-img {
+            height: 220px;
+            background: linear-gradient(45deg, #1a3a5f, #2a5a7f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 5rem;
+            position: relative;
+        }
+        
+        .project-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(10, 25, 47, 0.6), rgba(10, 25, 47, 0.8));
+        }
+        
+        .project-info {
+            padding: 2rem;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+        
+        .tech-tag {
+            background: rgba(17, 34, 64, 0.8);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(100, 255, 218, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: var(--light-blue);
+        }
+        
+        /* Contact Section */
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .form-control {
+            background: rgba(17, 34, 64, 0.6);
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            color: var(--off-white);
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            background: rgba(17, 34, 64, 0.8);
+            border-color: var(--light-blue);
+            color: var(--off-white);
+            box-shadow: 0 0 0 0.25rem rgba(100, 255, 218, 0.3);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            min-height: 180px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            position: relative;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(100, 255, 218, 0.15);
+            color: var(--light-blue);
+            transition: all 0.4s ease;
+            font-size: 1.4rem;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+        }
+        
+        .social-link:hover {
+            background: var(--light-blue);
+            color: var(--dark-blue);
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 8px 20px rgba(100, 255, 218, 0.5);
+            border-color: var(--light-blue);
+        }
+        
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+            text-align: center;
+            font-size: 1rem;
+            color: rgba(204, 214, 246, 0.8);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+            .navbar-nav {
+                margin-top: 1.5rem;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            section {
+                padding: 6rem 0;
+            }
+            .ethiopian-flag {
+                height: 40px;
+                width: 120px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .btn-primary {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            section {
+                padding: 5rem 0;
+            }
+            .about-content, .contact-form {
+                padding: 2rem;
+            }
+            .member-img {
+                height: 220px;
+                font-size: 4.5rem;
+            }
+        }
+        
+        /* Advanced Animations */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(100, 255, 218, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(100, 255, 218, 0); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--light-blue);
+        }
+        
+        .scroll-text {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border-right: 2px solid var(--light-blue);
+            border-bottom: 2px solid var(--light-blue);
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(-10px) rotate(45deg); }
+            60% { transform: translateY(-5px) rotate(45deg); }
+        }
+        
+        /* Tech Visualization */
+        .tech-viz {
+            height: 400px;
+            width: 100%;
+            margin: 3rem 0;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            background: rgba(10, 25, 47, 0.5);
+            border: 1px solid rgba(100, 255, 218, 0.2);
+        }
+        
+        /* Interactive Elements */
+        .interactive-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--light-blue);
+            box-shadow: 0 0 15px var(--light-blue);
+            pointer-events: none;
+            z-index: 100;
+            transform: translate(-50%, -50%);
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Elements -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+    <div class="floating-element floating-3"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ethco<span>Coders</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <div class="hero-content">
+                <div class="ethiopian-flag mx-auto pulse"></div>
+                <h1>Building Ethiopia's Digital Future</h1>
+                <p class="mx-auto">A collective of four visionary Ethiopian software engineers creating ethical, scalable solutions for local and global challenges. Est. 2025.</p>
+                <a href="#contact" class="btn btn-primary">Let's Collaborate</a>
+                <div class="scroll-indicator">
+                    <div class="scroll-text">SCROLL DOWN</div>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Ethco Coders</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="about-content">
+                        <p>Ethco Coders is a dynamic collective of four visionary Ethiopian software engineers, founded in 2025 with a mission to solve real-world problems through elegant, scalable, and ethical technology. Rooted in Ethiopia's rich culture of resilience and innovation, we bring fresh perspectives, cutting-edge technical skills, and unwavering dedication to every project we undertake.</p>
+                        <p class="mt-4">We believe that software is not just about functionality—it's about empowerment, accessibility, and impact. As young African technologists, we are committed to building digital solutions that uplift communities, drive local entrepreneurship, and position Ethiopia as a rising hub of tech excellence on the global stage.</p>
+                        
+                        <div class="tech-viz" id="tech-visualization"></div>
+                        
+                        <div class="values-grid mt-5">
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h5>Excellence</h5>
+                                <p>Clean, efficient, and maintainable code that stands the test of time</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h5>Collaboration</h5>
+                                <p>Team-driven solutions through open communication and shared vision</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h5>Integrity</h5>
+                                <p>Ethical development practices with transparency and accountability</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h5>Innovation</h5>
+                                <p>Creative problem-solving with emerging technologies and methodologies</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="bg-darker">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+            </div>
+            <div class="row">
+                <!-- Team Member 1 -->
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4 class="member-name">Natanel Ermias</h4>
+                            <span class="member-role">Full-Stack Developer & AI Specialist</span>
+                            <p>AI enthusiast with expertise in scalable web architectures and intelligent systems. Led development of an AI-powered Amharic text summarization tool.</p>
+                            <div class="skills">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">TensorFlow</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4 class="member-name">Tadios Aschalew</h4>
+                            <span class="member-role">Mobile & Cloud Engineer</span>
+                            <p>Specializes in cross-platform apps and cloud infrastructure for diverse digital landscapes. Created "SelamConnect" for rural healthcare.</p>
+                            <div class="skills">
+                                <span class="skill-tag">Flutter</span>
+                                <span class="skill-tag">Firebase</span>
+                                <span class="skill-tag">AWS</span>
+                                <span class="skill-tag">Dart</span>
+                                <span class="skill-tag">GCP</span>
+                                <span class="skill-tag">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4 class="member-name">Yonas Asamere</h4>
+                            <span class="member-role">Backend Architect & Security Expert</span>
+                            <p>Designs robust, secure APIs with focus on data privacy and system reliability. Architect of microservices e-commerce platform.</p>
+                            <div class="skills">
+                                <span class="skill-tag">Go</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Rust</span>
+                                <span class="skill-tag">PostgreSQL</span>
+                                <span class="skill-tag">Security</span>
+                                <span class="skill-tag">Kubernetes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="col-md-6 col-lg-3 mb-5">
+                    <div class="team-member">
+                        <div class="member-img">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="member-info">
+                            <h4 class="member-name">Afomia Asheger</h4>
+                            <span class="member-role">UI/UX Designer & Frontend Developer</span>
+                            <p>Creates intuitive, culturally resonant interfaces with a focus on accessibility. Founder of "SheCodes Ethiopia" initiative.</p>
+                            <div class="skills">
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Next.js</span>
+                                <span class="skill-tag">Accessibility</span>
+                                <span class="skill-tag">Animation</span>
+                                <span class="skill-tag">User Research</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <div class="project-info">
+                            <h4>AgriLink</h4>
+                            <p>Digital marketplace connecting Ethiopian farmers directly to buyers, reducing middlemen and increasing income. Features real-time pricing and multilingual support.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Mapbox</span>
+                                <span class="tech-tag">Amharic NLP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="project-info">
+                            <h4>EduBridge</h4>
+                            <p>Offline-first learning app delivering curriculum-aligned content to rural schools without internet dependency. Used in 120+ schools across Ethiopia.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">SQLite</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">AWS S3</span>
+                                <span class="tech-tag">Progressive Web App</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-info">
+                            <h4>MedTrack</h4>
+                            <p>Clinic inventory & patient management system for Ethiopian healthcare facilities with secure record keeping and appointment scheduling.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Go</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">HIPAA-inspired</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-md-6 col-lg-6 mb-5">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="project-info">
+                            <h4>AddisEvents</h4>
+                            <p>Community calendar showcasing tech meetups, art exhibitions, and hackathons across Addis Ababa—built to foster Ethiopia's creative-tech ecosystem.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Prisma</span>
+                                <span class="tech-tag">Tailwind CSS</span>
+                                <span class="tech-tag">Vercel</span>
+                                <span class="tech-tag">Real-time Updates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-darker">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="contact-form">
+                        <p class="text-center mb-5">Ready to build something extraordinary? Let's collaborate to turn your vision into impactful software.</p>
+                        <form id="contactForm" novalidate>
+                            <div id="contactFormMessage" class="alert d-none" role="alert"></div>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <label for="contactName" class="form-label visually-hidden">Your Name</label>
+                                    <input type="text" class="form-control" name="name" id="contactName" placeholder="Your Name" required minlength="2" maxlength="100" autocomplete="name">
+                                    <div class="invalid-feedback">Please enter your name (2-100 characters).</div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <label for="contactEmail" class="form-label visually-hidden">Your Email</label>
+                                    <input type="email" class="form-control" name="email" id="contactEmail" placeholder="Your Email" required maxlength="255" autocomplete="email">
+                                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactSubject" class="form-label visually-hidden">Subject</label>
+                                <input type="text" class="form-control" name="subject" id="contactSubject" placeholder="Subject (Optional)" maxlength="200" autocomplete="off">
+                            </div>
+                            <div class="mb-4">
+                                <label for="contactMessage" class="form-label visually-hidden">Your Message</label>
+                                <textarea class="form-control" name="message" id="contactMessage" placeholder="Your Message" required minlength="10" maxlength="2000" rows="5"></textarea>
+                                <div class="invalid-feedback">Please enter a message (minimum 10 characters).</div>
+                                <small class="text-muted d-block mt-1"><span id="messageCharCount">0</span>/2000 characters</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100" id="contactSubmitBtn" aria-label="Send message">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <span class="btn-text">Send Message</span>
+                            </button>
+                        </form>
+                        
+                        <div class="contact-info mt-5 text-center">
+                            <p class="mb-2"><i class="fas fa-envelope me-3"></i> hello@ethcocoder.com</p>
+                            <p class="mb-3"><i class="fas fa-map-marker-alt me-3"></i> Addis Ababa, Ethiopia</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3 class="mb-3">Ethco Coders</h3>
+                    <p>Proudly Ethiopian. Passionately Digital. Purposefully Built.</p>
+                    <p class="mt-2">Est. 2025 — Coding the Future, Together.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#about" class="text-decoration-none" style="color: var(--off-white);">About Us</a></li>
+                        <li class="mb-2"><a href="#team" class="text-decoration-none" style="color: var(--off-white);">Our Team</a></li>
+                        <li class="mb-2"><a href="#projects" class="text-decoration-none" style="color: var(--off-white);">Projects</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-decoration-none" style="color: var(--off-white);">Contact</a></li>
+                        <li class="mb-2"><a href="login.php" class="text-decoration-none" style="color: var(--off-white);">Login</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright mt-4">
+                <p class="mb-0">&copy; 2025 Ethco Coders. All rights reserved.</p>
+                <p class="mb-0 mt-2" style="font-size: 0.9rem; color: rgba(204, 214, 246, 0.6);">
+                    Powered by <strong style="color: var(--light-blue);">Ethco Coders</strong>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        // Initialize Three.js scene for hero section
+        function initHeroScene() {
+            const canvas = document.getElementById('hero-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            
+            // Create particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 2000;
+            const posArray = new Float32Array(particlesCount * 3);
+            
+            for(let i = 0; i < particlesCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 20;
+            }
+            
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            
+            // Material
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.02,
+                color: 0x64ffda,
+                transparent: true,
+                opacity: 0.8
+            });
+            
+            // Mesh
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+            
+            camera.position.z = 3;
+            
+            // Add Ethiopian flag colors as point lights
+            const greenLight = new THREE.PointLight(0x078930, 0.5);
+            greenLight.position.set(-5, 5, 5);
+            scene.add(greenLight);
+            
+            const yellowLight = new THREE.PointLight(0xfcdd09, 0.5);
+            yellowLight.position.set(0, -5, 5);
+            scene.add(yellowLight);
+            
+            const redLight = new THREE.PointLight(0xda121a, 0.5);
+            redLight.position.set(5, 5, 5);
+            scene.add(redLight);
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                particlesMesh.rotation.x += 0.0005;
+                particlesMesh.rotation.y += 0.0005;
+                
+                // Move particles
+                const positions = particlesMesh.geometry.attributes.position.array;
+                for(let i = 0; i < positions.length; i += 3) {
+                    positions[i + 2] += 0.01;
+                    if(positions[i + 2] > 10) {
+                        positions[i + 2] = -10;
+                    }
+                }
+                particlesMesh.geometry.attributes.position.needsUpdate = true;
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
+        
+        // Initialize tech visualization
+        function initTechVisualization() {
+            const container = document.getElementById('tech-visualization');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+            
+            // Create tech nodes
+            const nodes = [];
+            const nodeCount = 30;
+            const nodeGeometry = new THREE.SphereGeometry(0.1, 16, 16);
+            const nodeMaterial = new THREE.MeshBasicMaterial({ color: 0x64ffda });
+            
+            for(let i = 0; i < nodeCount; i++) {
+                const node = new THREE.Mesh(nodeGeometry, nodeMaterial);
+                node.position.set(
+                    (Math.random() - 0.5) * 8,
+                    (Math.random() - 0.5) * 8,
+                    (Math.random() - 0.5) * 8
+                );
+                scene.add(node);
+                nodes.push(node);
+            }
+            
+            // Create connections
+            const connections = [];
+            for(let i = 0; i < nodeCount; i++) {
+                for(let j = i + 1; j < nodeCount; j++) {
+                    if(Math.random() > 0.7) {
+                        const material = new THREE.LineBasicMaterial({ 
+                            color: 0x64ffda,
+                            transparent: true,
+                            opacity: 0.3
+                        });
+                        
+                        const points = [
+                            nodes[i].position,
+                            nodes[j].position
+                        ];
+                        
+                        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                        const line = new THREE.Line(geometry, material);
+                        scene.add(line);
+                        connections.push(line);
+                    }
+                }
+            }
+            
+            camera.position.z = 10;
+            
+            // Animation
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate nodes
+                nodes.forEach(node => {
+                    node.rotation.x += 0.01;
+                    node.rotation.y += 0.01;
+                });
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Character counter for message textarea
+        const messageTextarea = document.getElementById('contactMessage');
+        const charCount = document.getElementById('messageCharCount');
+        if (messageTextarea && charCount) {
+            messageTextarea.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
+        }
+        
+        // Form submission handling with AJAX and validation
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    this.classList.add('was-validated');
+                    return;
+                }
+                
+                const form = this;
+                const submitBtn = document.getElementById('contactSubmitBtn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const spinner = submitBtn.querySelector('.spinner-border');
+                const messageDiv = document.getElementById('contactFormMessage');
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                spinner.classList.remove('d-none');
+                btnText.textContent = 'Sending...';
+                messageDiv.classList.add('d-none');
+                
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Submit via AJAX
+                fetch('contact.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Reset form on success
+                    if (data.success) {
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        if (charCount) charCount.textContent = '0';
+                        messageDiv.className = 'alert alert-success';
+                        messageDiv.textContent = data.message;
+                        messageDiv.classList.remove('d-none');
+                        
+                        // Scroll to message
+                        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        messageDiv.className = 'alert alert-danger';
+                        messageDiv.textContent = data.message || 'Failed to send message. Please try again.';
+                        messageDiv.classList.remove('d-none');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    messageDiv.className = 'alert alert-danger';
+                    messageDiv.textContent = 'An error occurred. Please check your connection and try again.';
+                    messageDiv.classList.remove('d-none');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    spinner.classList.add('d-none');
+                    btnText.textContent = 'Send Message';
+                });
+            });
+        }
+        
+        // Interactive cursor effect
+        let interactiveCursor = null;
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create interactive cursor
+            interactiveCursor = document.createElement('div');
+            interactiveCursor.className = 'interactive-element';
+            document.body.appendChild(interactiveCursor);
+            
+            document.addEventListener('mousemove', (e) => {
+                interactiveCursor.style.left = e.clientX + 'px';
+                interactiveCursor.style.top = e.clientY + 'px';
+            });
+            
+            // Initialize 3D scenes
+            initHeroScene();
+            initTechVisualization();
+        });
+        
+        // Add floating animation to hero section elements
+        document.querySelector('.hero h1').classList.add('floating');
+    </script>
+</body>
+</html>
